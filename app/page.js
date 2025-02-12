@@ -1,10 +1,15 @@
 import Navbar from "./routes/navbar";
-
+import Overview from "./components/overview";
 export default function Home() {
   return (
-    <div>
-      <Navbar></Navbar>
-      <h1>Home</h1>
-    </div>
+    <main>
+      <header>
+        <Navbar></Navbar>
+      </header>
+      
+      <section>
+        <Overview></Overview>
+      </section>
+    </main>
   );
 }
