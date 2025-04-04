@@ -62,7 +62,7 @@ export default function LandingPage({handleOnPress}) {
                         fontSize: { xs: "1rem", md: "1.25rem" },
                         }}
                     >
-                        Discover amazing features and start exploring today
+                        Manage your expense effectively
                     </Typography>
                     <Button
                         variant="contained"
