@@ -1,10 +1,16 @@
 "use client";
 import { useState } from "react";
-import { Box, Typography, Button, Fade } from "@mui/material";
+import { Box, Typography, Fade } from "@mui/material";
+import LoginForm from "../components/loginForm";
 
-export default function LandingPage({handleOnPress}) {
-    const [isChecked, setChecked] = useState(false);
-    console.log("handleOnPress:", handleOnPress);
+export default function LandingPage() {
+    const [open, setOpen] = useState(false);
+    const handleClickOpen = () =>{
+        setOpen(true);
+    }
+    const handleClickClose = () =>{
+        setOpen(false);
+    }
     return (
         <Box
         sx={{
@@ -64,24 +70,7 @@ export default function LandingPage({handleOnPress}) {
                     >
                         Manage your expense effectively
                     </Typography>
-                    <Button
-                        variant="contained"
-                        onMouseEnter={() => setChecked(true)}
-                        onMouseLeave={() => setChecked(false)}
-                        onClick={handleOnPress}
-                        sx={{
-                        transition: "transform 0.3s ease-in-out",
-                        transform: isChecked ? "scale(1.05)" : "scale(1)",
-                        px: 4,
-                        py: 1.5,
-                        bgcolor: "white",
-                        color: "black",
-                        "&:hover": { bgcolor: "grey.100" },
-                        }}
-                    >
-                        Get Started
-                    </Button>
-
+                    <LoginForm handleClickClose={handleClickClose} handleClickOpen={handleClickOpen} open={open}/>
                 </Box>
             </Fade>
         </Box>

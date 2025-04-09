@@ -49,8 +49,8 @@ export default function Navbar() {
         </Box>
     );
     return (       
-        <nav className="bg-gray-900 text-white flex flex-row p-5">            
-            <button onClick={toggleDrawer(true)}><PaymentsIcon className="text-white" style={{ fontSize: 40 }} /></button>
+        <nav className="bg-white shadow-lg text-black flex flex-row p-5">            
+            <button onClick={toggleDrawer(true)}><PaymentsIcon className="text-black" style={{ fontSize: 40 }} /></button>
             <Drawer open={open} onClose={toggleDrawer(false)}>
                 {DrawerList}
             </Drawer>
