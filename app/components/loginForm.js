@@ -8,13 +8,19 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Button } from '@mui/material';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function LoginForm({handleClickClose, handleClickOpen, open}){
     const [isChecked, setChecked] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const logourl = '/Logo.jpg';
+    const [openRegister, setOpenRegister] = useState(false);
 
+    const handleOpenRegister = () =>{
+        handleClickClose();
+        setOpenRegister(true);
+    }
 
     return(
         <div>
@@ -94,7 +100,10 @@ export default function LoginForm({handleClickClose, handleClickOpen, open}){
                         fullWidth
                         variant="standard"
                     />
-                    
+                    <DialogContentText>
+                        Dont have account yet?
+                        <Button onClick={handleOpenRegister}>Register here</Button>
+                    </DialogContentText>    
                 </DialogContent>
                 <DialogActions sx={{display: "flex", justifyContent: "center"}}>
                     <Button sx={{backgroundColor: "black", padding: "10px", paddingLeft: "100px", paddingRight:"100px"}} type="submit">Login</Button>
