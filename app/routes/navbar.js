@@ -1,6 +1,5 @@
 "use client";
 
-import PaymentsIcon from '@mui/icons-material/Payments';
 import { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import { Drawer, Button } from '@mui/material';
@@ -12,8 +11,10 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
-export default function Navbar() {
+import Image from 'next/image';
 
+export default function Navbar() {
+    const logourl = '/Logo.jpg';
     const [open, setOpen] = useState(false);
 
     const toggleDrawer = (newOpen) => () => {
@@ -21,6 +22,7 @@ export default function Navbar() {
     };
     const DrawerList = (
         <Box sx={{ width: 300 }} role="presentation" onClick={toggleDrawer(false)}>
+
           <List>
             {['Overview', 'Daily Details', 'Monthly Details'].map((text, index) => (
               <ListItem key={text} disablePadding>
@@ -46,15 +48,20 @@ export default function Navbar() {
               </ListItem>
             ))}
           </List>
+          <Divider />
         </Box>
     );
     return (       
-        <nav className="bg-white shadow-lg text-black flex flex-row p-5">            
-            <button onClick={toggleDrawer(true)}><PaymentsIcon className="text-black" style={{ fontSize: 40 }} /></button>
+        <nav className="bg-white shadow-lg text-black flex flex-row p-5 items-center">            
+            <button onClick={toggleDrawer(true)}><Image width={80} height={80} src={logourl} alt="Financial Tracker Logo"></Image></button>
             <Drawer open={open} onClose={toggleDrawer(false)}>
+                <Image className='ml-20' width={150} height={150} src={logourl} alt="Financial Tracker Logo"></Image>
+                <hr></hr>
                 {DrawerList}
+                <Button>Logout</Button>
             </Drawer>
-            <h1 className="font-bold text-2xl pl-20 pt-2">Dashboard</h1>
+            
+            <h1 className="font-bold text-4xl ml-10 pt-2 pr-5 border-b-4 ">Dashboard</h1>
         </nav>
     );
     }

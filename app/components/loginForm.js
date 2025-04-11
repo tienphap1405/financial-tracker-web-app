@@ -27,7 +27,12 @@ export default function LoginForm({handleClickClose, handleClickOpen, open}){
         setOpenRegister(false);
         handleClickOpen();
     }
-
+    const handleRegistration = () =>{
+        // Wait for backend config
+    }
+    const handleLogin = () =>{
+        // Wait for backend config
+    }
 
     const HandleFormPopup= () =>{
         if(openRegister === true){
@@ -84,7 +89,7 @@ export default function LoginForm({handleClickClose, handleClickOpen, open}){
                         <Button onClick={handleCloseRegister}>Login here</Button>
                     </DialogContentText> 
                     <DialogActions sx={{display: "flex", justifyContent: "center"}}>
-                        <Button sx={{backgroundColor: "black", padding: "10px", paddingLeft: "100px", paddingRight:"100px"}} type="submit">Register</Button>
+                        <Button variant='contained' color='info' sx={{ padding: "10px", paddingLeft: "100px", paddingRight:"100px"}} type="submit">Register</Button>
                     </DialogActions>
                 </>
             );
@@ -129,7 +134,7 @@ export default function LoginForm({handleClickClose, handleClickOpen, open}){
                         <Button onClick={handleOpenRegister}>Register here</Button>
                     </DialogContentText> 
                     <DialogActions sx={{display: "flex", justifyContent: "center"}}>
-                        <Button sx={{backgroundColor: "black", padding: "10px", paddingLeft: "100px", paddingRight:"100px"}} type="submit">Login</Button>
+                        <Button variant='contained' color='info' sx={{ padding: "10px", paddingLeft: "100px", paddingRight:"100px" }} type="submit">Login</Button>
                     </DialogActions>
                 </>
             );
