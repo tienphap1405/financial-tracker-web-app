@@ -8,20 +8,133 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Button } from '@mui/material';
 import Image from 'next/image';
-import Link from 'next/link';
 
 export default function LoginForm({handleClickClose, handleClickOpen, open}){
     const [isChecked, setChecked] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [phone, setPhone] = useState("");
     const logourl = '/Logo.jpg';
     const [openRegister, setOpenRegister] = useState(false);
 
     const handleOpenRegister = () =>{
         handleClickClose();
         setOpenRegister(true);
+        handleClickOpen();
+    }
+    const handleCloseRegister = () =>{
+        handleClickClose();
+        setOpenRegister(false);
+        handleClickOpen();
     }
 
+
+    const HandleFormPopup= () =>{
+        if(openRegister === true){
+            return(
+                <>
+                    <DialogContentText>
+                        * Please provide the Email and Password to create an account
+                    </DialogContentText>
+                    
+                    <TextField
+                        autoFocus
+                        required
+                        margin="dense"
+                        id="email"
+                        name="email"
+                        label="Email Address"
+                        type="email"
+                        placeholder='Email here...'
+                        value={email}
+                        onChange={e => setEmail(e.target.value)}
+                        fullWidth
+                        variant="standard"
+                    />
+                    <TextField
+                        autoFocus
+                        required
+                        margin="dense"
+                        id="password"
+                        name="password"
+                        placeholder='Password here...'
+                        value={password}
+                        onChange={e => setPassword(e.target.value)}
+                        label="Password"
+                        type="password"
+                        fullWidth
+                        variant="standard"
+                    />
+                    <TextField
+                        autoFocus
+                        required
+                        margin="dense"
+                        id="phone"
+                        name="phone"
+                        placeholder='Phone number here...'
+                        value={phone}
+                        onChange={e => setPhone(e.target.value)}
+                        label="phone"
+                        type="phone"
+                        fullWidth
+                        variant="standard"
+                    />
+                    <DialogContentText>
+                        Already have account?
+                        <Button onClick={handleCloseRegister}>Login here</Button>
+                    </DialogContentText> 
+                    <DialogActions sx={{display: "flex", justifyContent: "center"}}>
+                        <Button sx={{backgroundColor: "black", padding: "10px", paddingLeft: "100px", paddingRight:"100px"}} type="submit">Register</Button>
+                    </DialogActions>
+                </>
+            );
+        }
+        else{
+            return(
+                <>
+                    <DialogContentText>
+                        * Please provide the Email and Password to log in to the web application
+                    </DialogContentText>
+                    
+                    <TextField
+                        autoFocus
+                        required
+                        margin="dense"
+                        id="name"
+                        name="email"
+                        label="Email Address"
+                        type="email"
+                        placeholder='Email here...'
+                        value={email}
+                        onChange={e => setEmail(e.target.value)}
+                        fullWidth
+                        variant="standard"
+                    />
+                    <TextField
+                        autoFocus
+                        required
+                        margin="dense"
+                        id="password"
+                        name="password"
+                        placeholder='Password here...'
+                        value={password}
+                        onChange={e => setPassword(e.target.value)}
+                        label="Password"
+                        type="password"
+                        fullWidth
+                        variant="standard"
+                    />
+                    <DialogContentText>
+                        Dont have account yet?
+                        <Button onClick={handleOpenRegister}>Register here</Button>
+                    </DialogContentText> 
+                    <DialogActions sx={{display: "flex", justifyContent: "center"}}>
+                        <Button sx={{backgroundColor: "black", padding: "10px", paddingLeft: "100px", paddingRight:"100px"}} type="submit">Login</Button>
+                    </DialogActions>
+                </>
+            );
+        }
+    }
     return(
         <div>
             <Button
@@ -68,46 +181,8 @@ export default function LoginForm({handleClickClose, handleClickOpen, open}){
                 </div>
                 <hr></hr>
                 <DialogContent>
-                    <DialogContentText>
-                        * Please provide the Email and Password to log in to the web application
-                    </DialogContentText>
-                    
-                    <TextField
-                        autoFocus
-                        required
-                        margin="dense"
-                        id="name"
-                        name="email"
-                        label="Email Address"
-                        type="email"
-                        placeholder='Email here...'
-                        value={email}
-                        onChange={e => setEmail(e.target.value)}
-                        fullWidth
-                        variant="standard"
-                    />
-                    <TextField
-                        autoFocus
-                        required
-                        margin="dense"
-                        id="password"
-                        name="password"
-                        placeholder='Password here...'
-                        value={password}
-                        onChange={e => setPassword(e.target.value)}
-                        label="Password"
-                        type="password"
-                        fullWidth
-                        variant="standard"
-                    />
-                    <DialogContentText>
-                        Dont have account yet?
-                        <Button onClick={handleOpenRegister}>Register here</Button>
-                    </DialogContentText>    
+                    <HandleFormPopup/> 
                 </DialogContent>
-                <DialogActions sx={{display: "flex", justifyContent: "center"}}>
-                    <Button sx={{backgroundColor: "black", padding: "10px", paddingLeft: "100px", paddingRight:"100px"}} type="submit">Login</Button>
-                </DialogActions>
             </Dialog>
         </div>
        
