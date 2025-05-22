@@ -176,7 +176,7 @@ export default function LoginForm({handleClickClose, handleClickOpen, open}){
                 },
                 }}
             >
-                <div className='flex justify-end items-center'>
+                <div className='flex justify-end items-center mr-5'>
                     <DialogTitle sx={{fontWeight: "bold"}}>Financial Tracker Web Application</DialogTitle>
                     <Button sx={{ padding: "20px", margin: "5px", borderRadius: "100%"}} onClick={handleClickClose}>X</Button>
                 </div>
