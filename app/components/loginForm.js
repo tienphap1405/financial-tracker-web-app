@@ -8,6 +8,8 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Button } from '@mui/material';
 import Image from 'next/image';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../auth/firebase-config';
 
 export default function LoginForm({handleClickClose, handleClickOpen, open}){
     const [isChecked, setChecked] = useState(false);
@@ -27,11 +29,31 @@ export default function LoginForm({handleClickClose, handleClickOpen, open}){
         setOpenRegister(false);
         handleClickOpen();
     }
-    const handleRegistration = () =>{
-        // Wait for backend config
+    const handleRegistration = async () =>{
+        try{
+            const userCred = await createUserWithEmailAndPassword(auth, email, password);
+            if (userCred.user){
+                alert("User Created Successfully");
+            }
+        }
+        catch(error){
+            console.log(error);
+            alert("Error: " + error.message);
+        }
+
     }
-    const handleLogin = () =>{
-        // Wait for backend config
+    const handleLogin = async () =>{
+       try{
+        const userCred = await signInWithEmailAndPassword(auth, email, password);
+        if (userCred.user){
+            alert("User Logged In Successfully");
+        }
+        
+       }
+       catch(error){
+        console.log(error);
+        alert("Error: " + error.message);
+       }
     }
 
     const HandleFormPopup= () =>{
@@ -89,7 +111,7 @@ export default function LoginForm({handleClickClose, handleClickOpen, open}){
                         <Button onClick={handleCloseRegister}>Login here</Button>
                     </DialogContentText> 
                     <DialogActions sx={{display: "flex", justifyContent: "center"}}>
-                        <Button variant='contained' color='info' sx={{ padding: "10px", paddingLeft: "100px", paddingRight:"100px"}} type="submit">Register</Button>
+                        <Button variant='contained' color='info' sx={{ padding: "10px", paddingLeft: "100px", paddingRight:"100px"}} type="submit" onClick={handleRegistration}>Register</Button>
                     </DialogActions>
                 </>
             );
@@ -134,7 +156,7 @@ export default function LoginForm({handleClickClose, handleClickOpen, open}){
                         <Button onClick={handleOpenRegister}>Register here</Button>
                     </DialogContentText> 
                     <DialogActions sx={{display: "flex", justifyContent: "center"}}>
-                        <Button variant='contained' color='info' sx={{ padding: "10px", paddingLeft: "100px", paddingRight:"100px" }} type="submit">Login</Button>
+                        <Button variant='contained' color='info' sx={{ padding: "10px", paddingLeft: "100px", paddingRight:"100px" }} type="submit" onClick={handleLogin}>Login</Button>
                     </DialogActions>
                 </>
             );
