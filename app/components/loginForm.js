@@ -9,8 +9,10 @@ import { Button } from '@mui/material';
 import Image from 'next/image';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../auth/firebase-config';
+import { useRouter } from 'next/navigation';
 
 export default function LoginForm({handleClickClose, handleClickOpen, open}){
+    const router = useRouter();
     const [isChecked, setChecked] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -31,6 +33,7 @@ export default function LoginForm({handleClickClose, handleClickOpen, open}){
     const handleRegistration = async () =>{
         try{
             const userCred = await createUserWithEmailAndPassword(auth, email, password);
+            router.push('/overview-page')
         }
         catch(error){
             console.log(error);
@@ -41,12 +44,12 @@ export default function LoginForm({handleClickClose, handleClickOpen, open}){
        try{
         const userCred = await signInWithEmailAndPassword(auth, email, password);
         const token = await userCred.user.getIdToken();
-
-       }
+        router.push('/overview-page')
+        }
        catch(error){
         console.log(error);
         alert("Error: " + error.message);
-       }
+        }
     }
 
     const HandleFormPopup= () =>{
