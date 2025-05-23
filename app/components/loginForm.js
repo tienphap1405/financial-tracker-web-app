@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -32,23 +31,17 @@ export default function LoginForm({handleClickClose, handleClickOpen, open}){
     const handleRegistration = async () =>{
         try{
             const userCred = await createUserWithEmailAndPassword(auth, email, password);
-            if (userCred.user){
-                alert("User Created Successfully");
-            }
         }
         catch(error){
             console.log(error);
             alert("Error: " + error.message);
         }
-
     }
     const handleLogin = async () =>{
        try{
         const userCred = await signInWithEmailAndPassword(auth, email, password);
-        if (userCred.user){
-            alert("User Logged In Successfully");
-        }
-        
+        const token = await userCred.user.getIdToken();
+
        }
        catch(error){
         console.log(error);
