@@ -11,7 +11,6 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'fire
 import { auth } from '../auth/firebase-config';
 import { useRouter } from 'next/navigation';
 import {CircularProgress} from '@mui/material';
-import {Alert} from '@mui/material';
 
 export default function LoginForm({handleClickClose, handleClickOpen, open}){
     const router = useRouter();
