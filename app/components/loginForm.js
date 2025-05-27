@@ -98,6 +98,7 @@ export default function LoginForm({handleClickClose, handleClickOpen, open}){
         const isPhoneError = error.toLowerCase().includes("phone");
 
         if (openRegister) {
+            setError('');
             return (
                 <>
                     <DialogContentText>
@@ -274,7 +275,7 @@ export default function LoginForm({handleClickClose, handleClickOpen, open}){
                 </div>
                 
                 <div className='flex flex-col items-center'>
-                    <Image width={150} height={150} src={logourl} alt="Financial Tracker Logo"></Image>
+                    <Image width={150} height={150} style={{ width: "100px", height: "auto" }} src={logourl} alt="Financial Tracker Logo"></Image>
                 </div>
                 <hr></hr>
                 <DialogContent>
