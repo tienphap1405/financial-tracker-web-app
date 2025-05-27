@@ -40,7 +40,8 @@ export default function LoginForm({handleClickClose, handleClickOpen, open}){
         setLoading(true);
         try{
             const userCred = await createUserWithEmailAndPassword(auth, email, password);
-            if (userCred.user){
+            const token = await userCred.user.getIdToken();
+            if (token){
                 router.push('/overview-page');
             }
         }
