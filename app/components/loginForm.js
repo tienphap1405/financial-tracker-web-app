@@ -26,12 +26,14 @@ export default function LoginForm({handleClickClose, handleClickOpen, open}){
 
     const handleOpenRegister = () =>{
         handleClickClose();
-        setOpenRegister(true);  
+        setOpenRegister(true);
+        setError('');  
         handleClickOpen();
     }
     const handleCloseRegister = () =>{
         handleClickClose();
         setOpenRegister(false);
+        setError('');
         handleClickOpen();
     }
 
@@ -78,11 +80,8 @@ export default function LoginForm({handleClickClose, handleClickOpen, open}){
         if (error.code === 'auth/user-not-found') {
             setError("User not found. Please check your email or register.");
         }
-        else if (error.code === 'auth/wrong-password') {
-            setError("Incorrect password. Please try again.");
-        }
-        else if (error.code === 'auth/invalid-email') {
-            setError("Invalid email format. Please enter a valid email.");
+        else if (error.code === 'auth/invalid-credential') {
+            setError("Invalid credentials. Please check your email and password.");
         }
         else {
             setError("An error occurred during login. Please try again."); 
