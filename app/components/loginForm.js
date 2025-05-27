@@ -11,6 +11,7 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'fire
 import { auth } from '../auth/firebase-config';
 import { useRouter } from 'next/navigation';
 import {CircularProgress} from '@mui/material';
+import {Alert} from '@mui/material';
 
 export default function LoginForm({handleClickClose, handleClickOpen, open}){
     const router = useRouter();
@@ -21,7 +22,7 @@ export default function LoginForm({handleClickClose, handleClickOpen, open}){
     const logourl = '/Logo.jpg';
     const [openRegister, setOpenRegister] = useState(false);
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(false);
+    const [error, setError] = useState('');
 
     const handleOpenRegister = () =>{
         handleClickClose();
@@ -33,27 +34,40 @@ export default function LoginForm({handleClickClose, handleClickOpen, open}){
         setOpenRegister(false);
         handleClickOpen();
     }
+
     const handleRegistration = async () =>{
+        setLoading(true);
         try{
             const userCred = await createUserWithEmailAndPassword(auth, email, password);
-            setLoading(true);
             if (userCred.user){
-                setLoading(false);
                 router.push('/overview-page');
             }
         }
         catch(error){
             console.log(error);
-            setError(true);
+            if (error.code === 'auth/email-already-in-use') {
+                setError("Email already in use. Please try another email.");
+            }
+            else if (error.code === 'auth/invalid-email') {
+                setError("Invalid email format. Please enter a valid email.");
+            }
+            else if (error.code === 'auth/weak-password') {
+                setError("Weak password. Please enter a stronger password.");
+            }
+            else {
+                setError("An error occurred during registration. Please try again.");
+            }
+        }
+        finally {
+            setLoading(false);
         }
     }
     const handleLogin = async () =>{
+        setLoading(true);
        try{
         const userCred = await signInWithEmailAndPassword(auth, email, password);
         const token = await userCred.user.getIdToken();
-        setLoading(true);
         if (token) {
-            setLoading(false);
             router.push('/overview-page');
         }
 
@@ -61,18 +75,36 @@ export default function LoginForm({handleClickClose, handleClickOpen, open}){
         }
        catch(error){
         console.log(error);
-        setError(true); 
+        if (error.code === 'auth/user-not-found') {
+            setError("User not found. Please check your email or register.");
         }
-    }
+        else if (error.code === 'auth/wrong-password') {
+            setError("Incorrect password. Please try again.");
+        }
+        else if (error.code === 'auth/invalid-email') {
+            setError("Invalid email format. Please enter a valid email.");
+        }
+        else {
+            setError("An error occurred during login. Please try again."); 
+        }
+        }
+        finally {
+            setLoading(false);
+        }
+}
 
-    const HandleFormPopup= () =>{
-        if(openRegister === true){
-            return(
+    const HandleFormPopup = () => {
+        const isEmailError = error.toLowerCase().includes("email");
+        const isPasswordError = error.toLowerCase().includes("password");
+        const isPhoneError = error.toLowerCase().includes("phone");
+
+        if (openRegister) {
+            return (
                 <>
                     <DialogContentText>
                         * Please provide the Email and Password to create an account
                     </DialogContentText>
-                    
+
                     <TextField
                         autoFocus
                         required
@@ -81,100 +113,126 @@ export default function LoginForm({handleClickClose, handleClickOpen, open}){
                         name="email"
                         label="Email Address"
                         type="email"
-                        placeholder='Email here...'
+                        placeholder="Email here..."
                         value={email}
                         onChange={e => setEmail(e.target.value)}
                         fullWidth
                         variant="standard"
+                        error={isEmailError}
+                        helperText={isEmailError ? error : ""}
                     />
                     <TextField
-                        autoFocus
                         required
                         margin="dense"
                         id="password"
                         name="password"
-                        placeholder='Password here...'
-                        value={password}
-                        onChange={e => setPassword(e.target.value)}
                         label="Password"
                         type="password"
+                        placeholder="Password here..."
+                        value={password}
+                        onChange={e => setPassword(e.target.value)}
                         fullWidth
                         variant="standard"
+                        error={isPasswordError}
+                        helperText={isPasswordError ? error : ""}
                     />
                     <TextField
-                        autoFocus
-                        required
                         margin="dense"
                         id="phone"
                         name="phone"
-                        placeholder='Phone number here...'
+                        label="Phone Number"
+                        type="text"
+                        placeholder="Phone number here..."
                         value={phone}
                         onChange={e => setPhone(e.target.value)}
-                        label="phone"
-                        type="phone"
                         fullWidth
                         variant="standard"
+                        error={isPhoneError}
+                        helperText={isPhoneError ? error : ""}
                     />
+
                     <DialogContentText>
-                        Already have account?
+                        Already have an account?
                         <Button onClick={handleCloseRegister}>
-                            {loading ? <CircularProgress/> : "Login here"}
+                            Login Here
                         </Button>
-                    </DialogContentText> 
-                    <DialogActions sx={{display: "flex", justifyContent: "center"}}>
-                        <Button variant='contained' color='info' sx={{ padding: "10px", paddingLeft: "100px", paddingRight:"100px"}} type="submit" onClick={handleRegistration}>Register</Button>
+                    </DialogContentText>
+
+                    <DialogActions sx={{ display: "flex", justifyContent: "center" }}>
+                        <Button
+                            variant="contained"
+                            color="info"
+                            sx={{ padding: "10px", paddingLeft: "100px", paddingRight: "100px" }}
+                            onClick={handleRegistration}
+                            disabled={loading}
+                        >
+                            {loading ? <CircularProgress size={24} /> : "Register"}
+                        </Button>
                     </DialogActions>
                 </>
             );
-        }
-        else{
-            return(
+        } else {
+            return (
                 <>
                     <DialogContentText>
                         * Please provide the Email and Password to log in to the web application
                     </DialogContentText>
-                    
+
                     <TextField
                         autoFocus
                         required
                         margin="dense"
-                        id="name"
+                        id="email"
                         name="email"
                         label="Email Address"
                         type="email"
-                        placeholder='Email here...'
+                        placeholder="Email here..."
                         value={email}
                         onChange={e => setEmail(e.target.value)}
                         fullWidth
                         variant="standard"
+                        error={isEmailError}
+                        helperText={isEmailError ? error : ""}
                     />
                     <TextField
-                        autoFocus
                         required
                         margin="dense"
                         id="password"
                         name="password"
-                        placeholder='Password here...'
-                        value={password}
-                        onChange={e => setPassword(e.target.value)}
                         label="Password"
                         type="password"
+                        placeholder="Password here..."
+                        value={password}
+                        onChange={e => setPassword(e.target.value)}
                         fullWidth
                         variant="standard"
+                        error={isPasswordError}
+                        helperText={isPasswordError ? error : ""}
                     />
+
                     <DialogContentText>
-                        Dont have account yet?
+                        Don't have an account yet?
                         <Button onClick={handleOpenRegister}>
-                            {loading ? <CircularProgress/> : "Register here"}
+                            Register Here
                         </Button>
-                    </DialogContentText> 
-                    <DialogActions sx={{display: "flex", justifyContent: "center"}}>
-                        <Button variant='contained' color='info' sx={{ padding: "10px", paddingLeft: "100px", paddingRight:"100px" }} type="submit" onClick={handleLogin}>Login</Button>
+                    </DialogContentText>
+
+                    <DialogActions sx={{ display: "flex", justifyContent: "center" }}>
+                        <Button
+                            variant="contained"
+                            color="info"
+                            sx={{ padding: "10px", paddingLeft: "100px", paddingRight: "100px" }}
+                            onClick={handleLogin}
+                            disabled={loading}
+                            type='submit'  
+                        >
+                            {loading ? <CircularProgress size={24} /> : "Login"}
+                        </Button>
                     </DialogActions>
                 </>
             );
         }
-    }
+        };
     return(
         <div>
             <Button
@@ -221,7 +279,7 @@ export default function LoginForm({handleClickClose, handleClickOpen, open}){
                 </div>
                 <hr></hr>
                 <DialogContent>
-                    <HandleFormPopup/> 
+                    {HandleFormPopup()}
                 </DialogContent>
             </Dialog>
         </div>
