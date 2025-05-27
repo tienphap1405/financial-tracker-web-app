@@ -25,15 +25,15 @@ export default function LoginForm({handleClickClose, handleClickOpen, open}){
 
     const handleOpenRegister = () =>{
         handleClickClose();
-        setOpenRegister(true);
-        setError('');  
+        setOpenRegister(true);  
         handleClickOpen();
+        setError('');
     }
     const handleCloseRegister = () =>{
         handleClickClose();
         setOpenRegister(false);
-        setError('');
         handleClickOpen();
+        setError('');
     }
 
     const handleRegistration = async () =>{
@@ -98,7 +98,6 @@ export default function LoginForm({handleClickClose, handleClickOpen, open}){
         const isPhoneError = error.toLowerCase().includes("phone");
 
         if (openRegister) {
-            setError('');
             return (
                 <>
                     <DialogContentText>
