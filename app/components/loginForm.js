@@ -10,6 +10,7 @@ import Image from 'next/image';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../auth/firebase-config';
 import { useRouter } from 'next/navigation';
+import {CircularProgress} from '@mui/material';
 
 export default function LoginForm({handleClickClose, handleClickOpen, open}){
     const router = useRouter();
@@ -19,10 +20,12 @@ export default function LoginForm({handleClickClose, handleClickOpen, open}){
     const [phone, setPhone] = useState("");
     const logourl = '/Logo.jpg';
     const [openRegister, setOpenRegister] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(false);
 
     const handleOpenRegister = () =>{
         handleClickClose();
-        setOpenRegister(true);
+        setOpenRegister(true);  
         handleClickOpen();
     }
     const handleCloseRegister = () =>{
@@ -33,22 +36,32 @@ export default function LoginForm({handleClickClose, handleClickOpen, open}){
     const handleRegistration = async () =>{
         try{
             const userCred = await createUserWithEmailAndPassword(auth, email, password);
-            router.push('/overview-page')
+            setLoading(true);
+            if (userCred.user){
+                setLoading(false);
+                router.push('/overview-page');
+            }
         }
         catch(error){
             console.log(error);
-            alert("Error: " + error.message);
+            setError(true);
         }
     }
     const handleLogin = async () =>{
        try{
         const userCred = await signInWithEmailAndPassword(auth, email, password);
         const token = await userCred.user.getIdToken();
-        router.push('/overview-page')
+        setLoading(true);
+        if (token) {
+            setLoading(false);
+            router.push('/overview-page');
+        }
+
+        
         }
        catch(error){
         console.log(error);
-        alert("Error: " + error.message);
+        setError(true); 
         }
     }
 
@@ -104,7 +117,9 @@ export default function LoginForm({handleClickClose, handleClickOpen, open}){
                     />
                     <DialogContentText>
                         Already have account?
-                        <Button onClick={handleCloseRegister}>Login here</Button>
+                        <Button onClick={handleCloseRegister}>
+                            {loading ? <CircularProgress/> : "Login here"}
+                        </Button>
                     </DialogContentText> 
                     <DialogActions sx={{display: "flex", justifyContent: "center"}}>
                         <Button variant='contained' color='info' sx={{ padding: "10px", paddingLeft: "100px", paddingRight:"100px"}} type="submit" onClick={handleRegistration}>Register</Button>
@@ -149,7 +164,9 @@ export default function LoginForm({handleClickClose, handleClickOpen, open}){
                     />
                     <DialogContentText>
                         Dont have account yet?
-                        <Button onClick={handleOpenRegister}>Register here</Button>
+                        <Button onClick={handleOpenRegister}>
+                            {loading ? <CircularProgress/> : "Register here"}
+                        </Button>
                     </DialogContentText> 
                     <DialogActions sx={{display: "flex", justifyContent: "center"}}>
                         <Button variant='contained' color='info' sx={{ padding: "10px", paddingLeft: "100px", paddingRight:"100px" }} type="submit" onClick={handleLogin}>Login</Button>
