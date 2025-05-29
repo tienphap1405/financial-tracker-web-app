@@ -1,7 +1,5 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
-import Navbar from "./routes/navbar";
 import LandingPage from "./landing-page/landingPage";
 
 export default function Home() {
