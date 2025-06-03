@@ -274,7 +274,13 @@ export default function LoginForm({handleClickClose, handleClickOpen, open}){
                 </div>
                 
                 <div className='flex flex-col items-center'>
-                    <Image width={150} height={150} style={{ width: "100px", height: "auto" }} src={logourl} alt="Financial Tracker Logo"></Image>
+                   <Image
+                    src="/Logo.jpg"
+                    alt="Financial Tracker Logo"
+                    width={150}
+                    height={150}
+                    priority
+                    />
                 </div>
                 <hr></hr>
                 <DialogContent>
