@@ -6,11 +6,11 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Button } from '@mui/material';
-import Image from 'next/image';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../auth/firebase-config';
 import { useRouter } from 'next/navigation';
 import {CircularProgress} from '@mui/material';
+import Fade from '@mui/material';
 
 export default function LoginForm({handleClickClose, handleClickOpen, open}){
     const router = useRouter();
@@ -22,7 +22,7 @@ export default function LoginForm({handleClickClose, handleClickOpen, open}){
     const [openRegister, setOpenRegister] = useState(false);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
-
+    
     const handleOpenRegister = () =>{
         handleClickClose();
         setOpenRegister(true);  
@@ -139,7 +139,7 @@ export default function LoginForm({handleClickClose, handleClickOpen, open}){
                         margin="dense"
                         id="phone"
                         name="phone"
-                        label="Phone Number"
+                        label="Phone Number (optional)"
                         type="text"
                         placeholder="Phone number here..."
                         value={phone}
@@ -205,7 +205,6 @@ export default function LoginForm({handleClickClose, handleClickOpen, open}){
                         onChange={e => setPassword(e.target.value)}
                         fullWidth
                         variant="standard"
-                        error={isPasswordError}
                         helperText={isPasswordError ? error : ""}
                     />
 
@@ -274,12 +273,11 @@ export default function LoginForm({handleClickClose, handleClickOpen, open}){
                 </div>
                 
                 <div className='flex flex-col items-center'>
-                   <Image
+                   <img
                     src="/Logo.jpg"
                     alt="Financial Tracker Logo"
-                    width={150}
-                    height={150}
-                    priority
+                    style={{
+                        width: "150px", height: "auto"}}
                     />
                 </div>
                 <hr></hr>
