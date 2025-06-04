@@ -41,9 +41,17 @@ export default function LoginForm({handleClickClose, handleClickOpen, open}){
         try{
             const userCred = await createUserWithEmailAndPassword(auth, email, password);
             const token = await userCred.user.getIdToken();
-            if (token){
-                router.push('/overview-page');
-            }
+            await fetch('http://localhost:5082/user', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                },
+                body: JSON.stringify({
+                    email: userCred.user.email,
+                    phone: phone || '', 
+                }),
+            })
         }
         catch(error){
             console.log(error);
