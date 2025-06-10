@@ -1,36 +1,30 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Personal Financial Tracker App
+A full-stack application that allows users to manage and monitor their personal financial state. This app enables users to log income and expenses, categorize transactions, and visualize financial trends through charts and summaries.
 
-## Getting Started
+Features
+Secure user authentication using Firebase
 
-First, run the development server:
+Add, edit, and delete income and expense records
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Categorize transactions for better analysis
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Filter transactions by date range
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+View summarized financial reports and visualizations
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+RESTful backend built with .NET Minimal API
 
-## Learn More
+Persistent storage with PostgreSQL
 
-To learn more about Next.js, take a look at the following resources:
+Responsive and user-friendly interface with React
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Tech Stack
+Frontend: React
+Backend: .NET 7 Minimal API
+Authentication: Firebase Authentication
+Database: PostgreSQL
+Styling: Tailwind CSS or CSS Modules
+Charts: Chart.js or Recharts
+Roadmap
+Authentication and Minimal API still in progress
+Add recurring transactions (future)
