@@ -39,6 +39,13 @@ export default function Overview() {
 
             </div>
             
+            <div>
+                <h1 className="text-lg font-bold mt-4">Note:</h1>
+                <p className="text-gray-600">
+                    This is a summary of your financial status for the current month. 
+                    Please ensure to update your transactions regularly for accurate tracking.
+                </p>
+            </div>
         </div>
     );
 }
