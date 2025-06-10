@@ -41,6 +41,7 @@ export default function LoginForm({handleClickClose, handleClickOpen, open}){
         try{
             const userCred = await createUserWithEmailAndPassword(auth, email, password);
             const token = await userCred.user.getIdToken();
+            console.log(token);
             await fetch('http://localhost:5082/user', {
                 method: 'POST',
                 headers: {
