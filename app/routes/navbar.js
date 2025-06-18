@@ -24,7 +24,7 @@ export default function Navbar() {
         <Box sx={{ width: 300 }} role="presentation" onClick={toggleDrawer(false)}>
 
           <List>
-            {['Overview', 'Daily Details', 'Monthly Details'].map((text, index) => (
+            {['Overview', 'Daily Details', 'Monthly Details', 'Input Expenses'].map((text, index) => (
               <ListItem key={text} disablePadding>
                 <ListItemButton>
                   <ListItemIcon>
