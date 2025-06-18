@@ -10,7 +10,7 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'fire
 import { auth } from '../auth/firebase-config';
 import { useRouter } from 'next/navigation';
 import {CircularProgress} from '@mui/material';
-import Fade from '@mui/material';
+
 
 export default function LoginForm({handleClickClose, handleClickOpen, open}){
     const router = useRouter();
@@ -18,11 +18,11 @@ export default function LoginForm({handleClickClose, handleClickOpen, open}){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [phone, setPhone] = useState("");
-    const logourl = '/Logo.jpg';
     const [openRegister, setOpenRegister] = useState(false);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
-    
+    const [imageLoaded, setImageLoaded] = useState(false);
+
     const handleOpenRegister = () =>{
         handleClickClose();
         setOpenRegister(true);  
@@ -36,6 +36,16 @@ export default function LoginForm({handleClickClose, handleClickOpen, open}){
         setError('');
     }
 
+    const handleImageLoad= () => {
+        setImageLoaded(true);
+    }
+    useEffect(() => {
+    if (open) {
+        const img = new Image();
+        img.src = '/Logo.jpg';
+        img.onload = () => setImageLoaded(true);
+    }
+}, [open]);
     const handleRegistration = async () =>{
         setLoading(true);
         try{
@@ -258,41 +268,51 @@ export default function LoginForm({handleClickClose, handleClickOpen, open}){
                 Get Started
             </Button>
             <Dialog
-                open={open}
-                onClose={handleClickClose}
-                slotProps={{
+            open={open}
+            onClose={handleClickClose}
+            slotProps={{
                 paper: {
                     component: 'form',
                     onSubmit: (event) => {
-                    event.preventDefault();
+                        event.preventDefault();
                         const formData = new FormData(event.currentTarget);
                         const formJson = Object.fromEntries(formData.entries());
-                        const email = formJson.email;
-                        console.log(email);
+                        console.log(formJson.email);
                         handleClickClose();
                     },
                 },
-                }}
-            >
-                <div className='flex justify-end items-center mr-5'>
-                    <DialogTitle sx={{fontWeight: "bold"}}>Financial Tracker Web Application</DialogTitle>
-                    <Button sx={{ padding: "20px", margin: "5px", borderRadius: "100%"}} onClick={handleClickClose}>X</Button>
+            }}
+        >
+            {imageLoaded ? (
+                <>
+                    <div className='flex justify-end items-center mr-5'>
+                        <DialogTitle sx={{ fontWeight: "bold" }}>
+                            Financial Tracker Web Application
+                        </DialogTitle>
+                        <Button sx={{ padding: "20px", margin: "5px", borderRadius: "100%" }} onClick={handleClickClose}>X</Button>
+                    </div>
+
+                    <div className='flex flex-col items-center'>
+                        <img
+                            src="/Logo.jpg"
+                            alt="Financial Tracker Logo"
+                            style={{ width: "150px", height: "auto" }}
+                        />
+                    </div>
+                    <hr />
+                    <DialogContent>
+                        {HandleFormPopup()}
+                    </DialogContent>
+                </>
+            ) : (
+                <div className='flex justify-center items-center h-60'>
+                    <CircularProgress />
                 </div>
-                
-                <div className='flex flex-col items-center'>
-                   <img
-                    src="/Logo.jpg"
-                    alt="Financial Tracker Logo"
-                    style={{
-                        width: "150px", height: "auto"}}
-                    />
+            )}
+        </Dialog>
+
+                    
                 </div>
-                <hr></hr>
-                <DialogContent>
-                    {HandleFormPopup()}
-                </DialogContent>
-            </Dialog>
-        </div>
        
     );
 }
