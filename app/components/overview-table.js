@@ -51,7 +51,7 @@ export default function Overview() {
 
             <div className="flex bg-white p-6 w-100 rounded-lg shadow-xl mt-10 ml-10 mr-10 flex-col text-black border-1">
                 <div className="flex justify-between">
-                    <h1 className="text-xl font-bold">Input Expenses</h1>
+                    <h1 className="text-xl font-bold">Monthly View Analytics</h1>
                     <h1 className="text-lg font-bold">Month: {currentMonth}/{currentYear}</h1>
                 </div>
                 
