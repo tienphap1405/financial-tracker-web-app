@@ -47,7 +47,7 @@ export default function LoginForm({handleClickClose, handleClickOpen, open}){
         router.prefetch('/Logo.jpg'); // Preload the image
         router.prefetch('/overview-page'); // Preload the overview page
     }
-}, [open]);
+}, [open]);s
     const handleRegistration = async () =>{
         setLoading(true);
         try{
