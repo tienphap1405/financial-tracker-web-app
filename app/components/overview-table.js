@@ -1,4 +1,4 @@
-import { PieChart } from "@mui/icons-material";
+import { PieChart } from '@mui/x-charts/PieChart';
 export default function Overview() {
     const currentMonth = new Date().getMonth() + 1;
     const currentYear = new Date().getFullYear();
@@ -58,21 +58,19 @@ export default function Overview() {
                 
                 <div className="flex justify-between mt-2 ">
                     <PieChart
-                        series={[
-                                {
-                                    data: [
-                                        { name: 'Food', value: 300 },
-                                        { name: 'Transport', value: 200 },
-                                        { name: 'Entertainment', value: 150 },
-                                        { name: 'Utilities', value: 100 },
-                                        { name: 'Other', value: 50 }
-                                    ],
-                                    highlightScope: { fade: 'global', highlight: 'item' },
-                                    faded: { innerRadius: 30, additionalRadius: -30, color: 'gray' },
-                                },
-                            ]}
-                        height={200}
-                        width={200}
+                    series={[
+                        {
+                        data: [ '...', '...', '...', '...' ],
+                        innerRadius: 30,
+                        outerRadius: 100,
+                        paddingAngle: 5,
+                        cornerRadius: 5,
+                        startAngle: -45,
+                        endAngle: 225,
+                        cx: 150,
+                        cy: 150,
+                        }
+                    ]}
                     />
 
                 </div>
