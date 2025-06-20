@@ -1,0 +1,86 @@
+[
+    {
+        "rent": 59,
+        "utilities": 57,
+        "Others": 86,
+        "Transport": 21,
+        "month": "Jan"
+    },
+    {
+        "rent": 50,
+        "utilities": 52,
+        "Others": 78,
+        "Transport": 28,
+        "month": "Feb"
+    },
+    {
+        "rent": 47,
+        "utilities": 53,
+        "Others": 106,
+        "Transport": 41,
+        "month": "Mar"
+    },
+    {
+        "rent": 54,
+        "utilities": 56,
+        "Others": 92,
+        "Transport": 73,
+        "month": "Apr"
+    },
+    {
+        "rent": 57,
+        "utilities": 69,
+        "Others": 92,
+        "Transport": 99,
+        "month": "May"
+    },
+    {
+        "rent": 60,
+        "utilities": 63,
+        "Others": 103,
+        "Transport": 144,
+        "month": "June"
+    },
+    {
+        "rent": 59,
+        "utilities": 60,
+        "Others": 105,
+        "Transport": 319,
+        "month": "July"
+    },
+    {
+        "rent": 65,
+        "utilities": 60,
+        "Others": 106,
+        "Transport": 249,
+        "month": "Aug"
+    },
+    {
+        "rent": 51,
+        "utilities": 51,
+        "Others": 95,
+        "Transport": 131,
+        "month": "Sept"
+    },
+    {
+        "rent": 60,
+        "utilities": 65,
+        "Others": 97,
+        "Transport": 55,
+        "month": "Oct"
+    },
+    {
+        "rent": 67,
+        "utilities": 64,
+        "Others": 76,
+        "Transport": 48,
+        "month": "Nov"
+    },
+    {
+        "rent": 61,
+        "utilities": 70,
+        "Others": 103,
+        "Transport": 25,
+        "month": "Dec"
+    }
+]

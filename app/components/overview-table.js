@@ -1,7 +1,6 @@
 import { PieChart } from '@mui/x-charts/PieChart';
 import { BarChart } from '@mui/x-charts/BarChart';
-import { Divider } from '@mui/material';
-
+import testdata from '../../public/test_data.json';
 export default function Overview() {
     const currentMonth = new Date().getMonth() + 1;
     const currentYear = new Date().getFullYear();
@@ -9,6 +8,7 @@ export default function Overview() {
     const Expenses = 1111;
     const saving = incomedata - Expenses;
     const debit = 500 + saving;
+
     const chartSetting = {
         yAxis: [
             {
@@ -18,92 +18,7 @@ export default function Overview() {
         ],
         height: 300,
     };
-    const dataset = [
-        {
-            rent: 59,
-            utilities: 57,
-            Others: 86,
-            Transport: 21,
-            month: 'Jan',
-        },
-        {
-            rent: 50,
-            utilities: 52,
-            Others: 78,
-            Transport: 28,
-            month: 'Feb',
-        },
-        {
-            rent: 47,
-            utilities: 53,
-            Others: 106,
-            Transport: 41,
-            month: 'Mar',
-        },
-        {
-            rent: 54,
-            utilities: 56,
-            Others: 92,
-            Transport: 73,
-            month: 'Apr',
-        },
-        {
-            rent: 57,
-            utilities: 69,
-            Others: 92,
-            Transport: 99,
-            month: 'May',
-        },
-        {
-            rent: 60,
-            utilities: 63,
-            Others: 103,
-            Transport: 144,
-            month: 'June',
-        },
-        {
-            rent: 59,
-            utilities: 60,
-            Others: 105,
-            Transport: 319,
-            month: 'July',
-        },
-        {
-            rent: 65,
-            utilities: 60,
-            Others: 106,
-            Transport: 249,
-            month: 'Aug',
-        },
-        {
-            rent: 51,
-            utilities: 51,
-            Others: 95,
-            Transport: 131,
-            month: 'Sept',
-        },
-        {
-            rent: 60,
-            utilities: 65,
-            Others: 97,
-            Transport: 55,
-            month: 'Oct',
-        },
-        {
-            rent: 67,
-            utilities: 64,
-            Others: 76,
-            Transport: 48,
-            month: 'Nov',
-        },
-        {
-            rent: 61,
-            utilities: 70,
-            Others: 103,
-            Transport: 25,
-            month: 'Dec',
-        },
-    ];
+
     return (
         <div>
             <div className="flex bg-white p-6 w-100 rounded-lg shadow-xl mt-10 ml-10 mr-10 flex-col text-black border-1">
@@ -159,10 +74,10 @@ export default function Overview() {
                             series={[
                                 {
                                     data: [
-                                        { id: 0, value: dataset[currentMonth - 1]?.rent || 0, label: 'Rent' },
-                                        { id: 1, value: dataset[currentMonth - 1]?.utilities || 0, label: 'Utilities & Services bill' },
-                                        { id: 2, value: dataset[currentMonth - 1]?.Others || 0, label: 'Others' },
-                                        { id: 3, value: dataset[currentMonth - 1]?.Transport || 0, label: 'Public Transport' },
+                                        { id: 0, value: testdata[currentMonth - 1]?.rent || 0, label: 'Rent' },
+                                        { id: 1, value: testdata[currentMonth - 1]?.utilities || 0, label: 'Utilities & Services bill' },
+                                        { id: 2, value: testdata[currentMonth - 1]?.Others || 0, label: 'Others' },
+                                        { id: 3, value: testdata[currentMonth - 1]?.Transport || 0, label: 'Public Transport' },
                                     ],
                                     highlightScope: { fade: 'global', highlight: 'item' },
                                     faded: { innerRadius: 30, additionalRadius: -30, color: 'gray' },
@@ -173,7 +88,7 @@ export default function Overview() {
                         />
 
                         <BarChart
-                            dataset={dataset}
+                            dataset={testdata}
                             xAxis={[{ dataKey: 'month' }]}
                             series={[
                                 { dataKey: 'rent', label: 'Rent' },
