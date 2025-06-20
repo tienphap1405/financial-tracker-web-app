@@ -154,33 +154,34 @@ export default function Overview() {
                 
                 <hr></hr>
                 
-                <div className="flex justify-between mt-2  ">
-                    <PieChart
-                        series={[
-                            {
-                            data: [
-                                { id: 0, value: 10, label: 'series A' },
-                                { id: 1, value: 15, label: 'series B' },
-                                { id: 2, value: 20, label: 'series C' },
-                            ],
-                            highlightScope: { fade: 'global', highlight: 'item' },
-                            faded: { innerRadius: 30, additionalRadius: -30, color: 'gray' },
-                            },
-                        ]}
-                        width={200}
-                        height={200}
-                    />
-                    <BarChart
-                        dataset={dataset}
-                        xAxis={[{ dataKey: 'month' }]}
-                        series={[
-                            { dataKey: 'london', label: 'London' },
-                            { dataKey: 'paris', label: 'Paris' },
-                            { dataKey: 'newYork', label: 'New York' },
-                            { dataKey: 'seoul', label: 'Seoul' },
-                        ]}
-                        {...chartSetting}
-                    />
+                <div className="flex justify-between mt-2 ">
+                        <PieChart
+                            series={[
+                                {
+                                data: [
+                                    { id: 0, value: 10, label: 'series A' },
+                                    { id: 1, value: 15, label: 'series B' },
+                                    { id: 2, value: 20, label: 'series C' },
+                                ],
+                                highlightScope: { fade: 'global', highlight: 'item' },
+                                faded: { innerRadius: 30, additionalRadius: -30, color: 'gray' },
+                                },
+                            ]}
+                            width={200}
+                            height={200}
+                        />
+
+                        <BarChart
+                            dataset={dataset}
+                            xAxis={[{ dataKey: 'month' }]}
+                            series={[
+                                { dataKey: 'london', label: 'London' },
+                                { dataKey: 'paris', label: 'Paris' },
+                                { dataKey: 'newYork', label: 'New York' },
+                                { dataKey: 'seoul', label: 'Seoul' },
+                            ]}
+                            {...chartSetting}
+                        />
                 </div>
               
 
