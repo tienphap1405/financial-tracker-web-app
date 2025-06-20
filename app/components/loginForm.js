@@ -44,6 +44,8 @@ export default function LoginForm({handleClickClose, handleClickOpen, open}){
         const img = new Image();
         img.src = '/Logo.jpg';
         img.onload = () => setImageLoaded(true);
+        router.prefetch('/Logo.jpg'); // Preload the image
+        router.prefetch('/overview-page'); // Preload the overview page
     }
 }, [open]);
     const handleRegistration = async () =>{
@@ -87,9 +89,8 @@ export default function LoginForm({handleClickClose, handleClickOpen, open}){
        try{
         const userCred = await signInWithEmailAndPassword(auth, email, password);
         const token = await userCred.user.getIdToken();
-        if (token) {
-            router.push('/overview-page');
-        }
+        router.push('/overview-page');
+        
 
         
         }
