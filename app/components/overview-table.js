@@ -2,13 +2,18 @@ import { PieChart } from '@mui/x-charts/PieChart';
 import { BarChart } from '@mui/x-charts/BarChart';
 import testdata from '../../public/test_data.json';
 export default function Overview() {
-    const currentMonth = new Date().getMonth() + 1;
+    const fullMonthNames = [
+    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'June',
+    'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'
+    ];
+    const currentMonthName = fullMonthNames[new Date().getMonth()];
+    const currentMonth = new Date().getMonth();
     const currentYear = new Date().getFullYear();
     const incomedata = 1230;
     const Expenses = 1111;
     const saving = incomedata - Expenses;
     const debit = 500 + saving;
-
+    console.log(testdata[6].rent);
     const chartSetting = {
         yAxis: [
             {
@@ -24,7 +29,7 @@ export default function Overview() {
             <div className="flex bg-white p-6 w-100 rounded-lg shadow-xl mt-10 ml-10 mr-10 flex-col text-black border-1">
                 <div className="flex justify-between">
                     <h1 className="text-xl font-bold">Overview Dashboard</h1>
-                    <h1 className="text-lg font-bold">Month: {currentMonth}/{currentYear}</h1>
+                    <h1 className="text-lg font-bold">Month: {currentMonthName}/{currentYear}</h1>
                 </div>
                 
                 <hr></hr>
@@ -64,7 +69,7 @@ export default function Overview() {
             <div className="flex bg-white p-6 w-100 rounded-lg shadow-xl mt-10 ml-10 mr-10 flex-col text-black border-1">
                 <div className="flex justify-between">
                     <h1 className="text-xl font-bold">Monthly View Analytics</h1>
-                    <h1 className="text-lg font-bold">Month: {currentMonth}/{currentYear}</h1>
+                    <h1 className="text-lg font-bold">Month: {currentMonthName}/{currentYear}</h1>
                 </div>
                 
                 <hr></hr>
@@ -74,10 +79,10 @@ export default function Overview() {
                             series={[
                                 {
                                     data: [
-                                        { id: 0, value: testdata[currentMonth - 1]?.rent || 0, label: 'Rent' },
-                                        { id: 1, value: testdata[currentMonth - 1]?.utilities || 0, label: 'Utilities & Services bill' },
-                                        { id: 2, value: testdata[currentMonth - 1]?.Others || 0, label: 'Others' },
-                                        { id: 3, value: testdata[currentMonth - 1]?.Transport || 0, label: 'Public Transport' },
+                                        { id: 0, value: testdata[currentMonth]?.rent || 0, label: 'Rent' },
+                                        { id: 1, value: testdata[currentMonth]?.utilities || 0, label: 'Utilities & Services bill' },
+                                        { id: 2, value: testdata[currentMonth]?.Others || 0, label: 'Others' },
+                                        { id: 3, value: testdata[currentMonth]?.Transport || 0, label: 'Public Transport' },
                                     ],
                                     highlightScope: { fade: 'global', highlight: 'item' },
                                     faded: { innerRadius: 30, additionalRadius: -30, color: 'gray' },
