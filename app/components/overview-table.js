@@ -13,7 +13,6 @@ export default function Overview() {
     const Expenses = 1111;
     const saving = incomedata - Expenses;
     const debit = 500 + saving;
-    console.log(testdata[6].rent);
     const chartSetting = {
         yAxis: [
             {
@@ -93,7 +92,7 @@ export default function Overview() {
                         />
 
                         <BarChart
-                            dataset={testdata}
+                            dataset={[testdata[currentMonth]]}
                             xAxis={[{ dataKey: 'month' }]}
                             series={[
                                 { dataKey: 'rent', label: 'Rent' },
