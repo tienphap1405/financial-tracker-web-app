@@ -12,44 +12,53 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 export default function Navbar() {
     const logourl = '/Logo.jpg';
     const [open, setOpen] = useState(false);
-
+    const router = useRouter();
     const toggleDrawer = (newOpen) => () => {
         setOpen(newOpen);
     };
     const DrawerList = (
-        <Box sx={{ width: 300 }} role="presentation" onClick={toggleDrawer(false)}>
+      <Box sx={{ width: 300 }} role="presentation" onClick={() => toggleDrawer(false)}>
+        <List>
+          {['Overview', 'Daily Details', 'Monthly Details', 'Input Expenses'].map((text, index) => (
+            <ListItem key={text} disablePadding>
+              <ListItemButton
+                onClick={() => {
+                  if (text === 'Monthly Details') {
+                    router.push('monthly-detail-page');
+                  }
+                }}
+              >
+                <ListItemIcon>
+                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
 
-          <List>
-            {['Overview', 'Daily Details', 'Monthly Details', 'Input Expenses'].map((text, index) => (
-              <ListItem key={text} disablePadding>
-                <ListItemButton>
-                  <ListItemIcon>
-                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                  </ListItemIcon>
-                  <ListItemText primary={text} />
-                </ListItemButton>
-              </ListItem>
-            ))}
-          </List>
-          <Divider />
-          <List>
-            {['Goals'].map((text, index) => (
-              <ListItem key={text} disablePadding>
-                <ListItemButton>
-                  <ListItemIcon>
-                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                  </ListItemIcon>
-                  <ListItemText primary={text} />
-                </ListItemButton>
-              </ListItem>
-            ))}
-          </List>
-          <Divider />
-        </Box>
+        <Divider />
+
+        <List>
+          {['Goals'].map((text, index) => (
+            <ListItem key={text} disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
+
+        <Divider />
+      </Box>
     );
     return (       
         <nav className="bg-white shadow-lg text-black flex flex-row p-5 items-center">            
