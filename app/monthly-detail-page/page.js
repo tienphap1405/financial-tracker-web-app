@@ -26,7 +26,7 @@ export default function MonthlyDetailPage() {
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
-                    <TableRow className='bg-gray-200'>
+                    <TableRow className='bg-gray-200s'>
                         <TableCell>Dessert (100g serving)</TableCell>
                         <TableCell align="right">Calories</TableCell>
                         <TableCell align="right">Fat&nbsp;(g)</TableCell>
