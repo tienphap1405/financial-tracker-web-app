@@ -31,6 +31,13 @@ export default function Navbar() {
                   if (text === 'Monthly Details') {
                     router.push('monthly-detail-page');
                   }
+                  else if (text === 'Daily Details') {
+                    router.push('daily-detail-page');
+                  } else if (text === 'Input Expenses') {
+                    router.push('input-expenses-page');
+                  } else if (text === 'Overview') {
+                    router.push('overview-page');
+                  }
                 }}
               >
                 <ListItemIcon>
