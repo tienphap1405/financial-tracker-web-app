@@ -68,7 +68,7 @@ export default function Navbar() {
       </Box>
     );
     return (       
-        <nav className="bg-white shadow-lg text-black flex flex-row p-5 items-center">            
+        <nav className="bg-white shadow-lg text-black flex flex-row p-5 items-center fixed top-0 w-full">            
             <button onClick={toggleDrawer(true)}><Image width={80} height={80} src={logourl} alt="Financial Tracker Logo"></Image></button>
             <Drawer open={open} onClose={toggleDrawer(false)}>
                 <Image className='ml-20' width={150} height={150} src={logourl} alt="Financial Tracker Logo"></Image>
