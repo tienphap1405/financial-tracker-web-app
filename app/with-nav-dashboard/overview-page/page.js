@@ -1,5 +1,4 @@
-import Overview from "../components/overview-table";
-import Navbar from "../routes/navbar";
+import Overview from "../../components/overview-table";
 export default function OverviewPage(){
     return(
         <div>
