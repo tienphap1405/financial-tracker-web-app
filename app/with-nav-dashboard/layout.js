@@ -4,7 +4,7 @@ export default function DashboardLayout({ children }) {
     <>
       <Navbar />
       {/* Optionally a sidebar or layout container */}
-      <main>{children}</main>
+      <main className="pt-20">{children}</main>
     </>
   );
 }

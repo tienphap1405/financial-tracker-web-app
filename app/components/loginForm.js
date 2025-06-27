@@ -89,7 +89,7 @@ export default function LoginForm({handleClickClose, handleClickOpen, open}){
        try{
         const userCred = await signInWithEmailAndPassword(auth, email, password);
         const token = await userCred.user.getIdToken();
-        router.push('/overview-page');
+        router.push('/with-nav-dashboard/overview-page');
         
 
         
