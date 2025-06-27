@@ -77,7 +77,7 @@ export default function Navbar() {
                 <Button>Logout</Button>
             </Drawer>
             
-            <h1 className="font-bold text-4xl ml-10 pt-2 pr-5 border-b-4 ">Dashboard</h1>
+            <h1 className="font-bold text-4xl ml-10 pt-2 pr-5 border-b-4 text-primary">Dashboard</h1>
         </nav>
     );
     }
