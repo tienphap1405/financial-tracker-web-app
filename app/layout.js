@@ -2,6 +2,7 @@ import { Inter, Roboto_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "./routes/navbar";
 
+
 const geistSans = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
@@ -24,8 +25,7 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         suppressHydrationWarning={true}
       >
-        <Navbar></Navbar>
-        <main className="pt-24">{children}</main>
+        {children}
       </body>
     </html>
   );

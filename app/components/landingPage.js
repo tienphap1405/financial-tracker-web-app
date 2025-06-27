@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { Box, Typography, Fade } from "@mui/material";
-import LoginForm from "../components/loginForm";
+import LoginForm from "./loginForm";
 
 export default function LandingPage() {
     const [open, setOpen] = useState(false);
