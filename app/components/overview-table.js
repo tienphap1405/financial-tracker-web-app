@@ -25,7 +25,8 @@ export default function Overview() {
 
     return (
         <div className='flex flex-col pt-10 mx-auto'>
-            <div className='flex flex-row mt-10 ml-10 mr-10 justify-between'>
+            
+            <div className='grid grid-cols-4 gap-4 mx-10'>
                 <div className="flex bg-white p-10 rounded-lg shadow-xl flex-col text-black border-1">
                     <div className="flex flex-col items-center p-1">
                         <h1>Income Summary this Month</h1>
