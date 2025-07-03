@@ -57,8 +57,8 @@ export default function Overview() {
             </div>
                   
    
-            <div className='flex flex-row'>
-                <div className="flex bg-white p-6 w-100 rounded-lg shadow-xl mt-10 ml-10 mr-10 flex-col text-black border-1">
+            <div className='flex flex-row mt-5'>
+                <div className="flex bg-white p-6 w-1/2 rounded-lg shadow-xl mt-5 ml-10 mr-10 flex-col text-black border-1">
                         <PieChart
                             series={[
                                 {
@@ -77,7 +77,7 @@ export default function Overview() {
                         />
                 </div>
 
-                <div className="flex bg-white p-6 w-100 rounded-lg shadow-xl mt-10 ml-10 mr-10 flex-col text-black border-1">
+                <div className="flex bg-white p-10 w-50 rounded-lg shadow-xl mt-10 mr-10 flex-col text-black border-1">
                         <BarChart
                             dataset={[testdata[currentMonth]]}
                             xAxis={[{ dataKey: 'month' }]}
