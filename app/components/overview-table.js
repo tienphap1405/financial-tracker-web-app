@@ -57,40 +57,40 @@ export default function Overview() {
             </div>
                   
    
+            <div className='flex flex-row'>
+                <div className="flex bg-white p-6 w-100 rounded-lg shadow-xl mt-10 ml-10 mr-10 flex-col text-black border-1">
+                        <PieChart
+                            series={[
+                                {
+                                    data: [
+                                        { id: 0, value: testdata[currentMonth]?.rent || 0, label: 'Rent' },
+                                        { id: 1, value: testdata[currentMonth]?.utilities || 0, label: 'Utilities & Services bill' },
+                                        { id: 2, value: testdata[currentMonth]?.Others || 0, label: 'Others' },
+                                        { id: 3, value: testdata[currentMonth]?.Transport || 0, label: 'Public Transport' },
+                                    ],
+                                    highlightScope: { fade: 'global', highlight: 'item' },
+                                    faded: { innerRadius: 30, additionalRadius: -30, color: 'gray' },
+                                },
+                            ]}
+                            width={200}
+                            height={200}
+                        />
+                </div>
 
-            <div className="flex bg-white p-6 w-100 rounded-lg shadow-xl mt-10 ml-10 mr-10 flex-col text-black border-1">
-                    <PieChart
-                        series={[
-                            {
-                                data: [
-                                    { id: 0, value: testdata[currentMonth]?.rent || 0, label: 'Rent' },
-                                    { id: 1, value: testdata[currentMonth]?.utilities || 0, label: 'Utilities & Services bill' },
-                                    { id: 2, value: testdata[currentMonth]?.Others || 0, label: 'Others' },
-                                    { id: 3, value: testdata[currentMonth]?.Transport || 0, label: 'Public Transport' },
-                                ],
-                                highlightScope: { fade: 'global', highlight: 'item' },
-                                faded: { innerRadius: 30, additionalRadius: -30, color: 'gray' },
-                            },
-                        ]}
-                        width={200}
-                        height={200}
-                    />
-            </div>
-
-            <div className="flex bg-white p-6 w-100 rounded-lg shadow-xl mt-10 ml-10 mr-10 flex-col text-black border-1">
-                    <BarChart
-                        dataset={[testdata[currentMonth]]}
-                        xAxis={[{ dataKey: 'month' }]}
-                        series={[
-                            { dataKey: 'rent', label: 'Rent' },
-                            { dataKey: 'utilities', label: 'Utilities & Services bill' },
-                            { dataKey: 'Others', label: 'Others' },
-                            { dataKey: 'Transport', label: 'Public Transport' },
-                        ]}
-                        {...chartSetting}
-                    />
-            </div>
-              
+                <div className="flex bg-white p-6 w-100 rounded-lg shadow-xl mt-10 ml-10 mr-10 flex-col text-black border-1">
+                        <BarChart
+                            dataset={[testdata[currentMonth]]}
+                            xAxis={[{ dataKey: 'month' }]}
+                            series={[
+                                { dataKey: 'rent', label: 'Rent' },
+                                { dataKey: 'utilities', label: 'Utilities & Services bill' },
+                                { dataKey: 'Others', label: 'Others' },
+                                { dataKey: 'Transport', label: 'Public Transport' },
+                            ]}
+                            {...chartSetting}
+                        />
+                </div>
+            </div>  
         </div>
     );
 }
