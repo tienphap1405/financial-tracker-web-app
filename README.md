@@ -16,7 +16,7 @@ A full-stack application that allows users to manage and monitor their personal 
 ## Tech Stack
 
 - **Frontend**: React  
-- **Backend**: .NET 7 Minimal API  
+- **Backend**: Javascript, Node.js  
 - **Authentication**: Firebase Authentication  
 - **Database**: PostgreSQL  
 - **Styling**: Tailwind CSS or CSS Modules  
