@@ -1,4 +1,4 @@
-import Overview from "../../components/overview-table";
+import Overview from "./components/overview-table";
 export default function OverviewPage(){
     return(
         <div>

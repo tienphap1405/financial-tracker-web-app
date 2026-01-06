@@ -1,6 +1,6 @@
 import { PieChart } from '@mui/x-charts/PieChart';
 import { BarChart } from '@mui/x-charts/BarChart';
-import testdata from '../../public/test_data.json';
+import testdata from '@/test_data.json'
 export default function Overview() {
     const fullMonthNames = [
     'Jan', 'Feb', 'Mar', 'Apr', 'May', 'June',

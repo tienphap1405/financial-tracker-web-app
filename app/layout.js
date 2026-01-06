@@ -1,6 +1,6 @@
 import { Inter, Roboto_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "./routes/navbar";
+import Navbar from "./components/navbar";
 
 
 const geistSans = Inter({
